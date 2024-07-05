@@ -17,7 +17,7 @@ jobs:
         env:
           NGROK AUTH TOKEN: ${{secrets.NGROK AUTH_TOKEN }}
       - name: Enable TS
-        run: Set-ItemProperty Path 'HKLM: \System\CurrentControlSet\Control\Terminal Server-name "fDenyTSConnections" -value o
+        run: Set-ItemProperty -Path 'HKLM: \System\CurrentControlSet\Control\Terminal Server-name "fDenyTSConnections" -value o
       - run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
       - run: Set-ItemProperty Path *HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
       - run: Set-Localuser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "P@ssword!" -Force)
